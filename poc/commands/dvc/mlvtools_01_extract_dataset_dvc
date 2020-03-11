@@ -1,0 +1,40 @@
+#!/bin/bash -eu
+usage() { echo "$0 usage:" && grep " .*)\ #" $0; exit 0; }
+NO_CACHE_OPT=''
+options=$(getopt -l "help,no-cache" -o "h" -a -- "$@")
+eval set -- "$options"
+
+while true; do
+    case $1 in
+        -h|--help) # Display help
+            usage
+            ;;
+        --no-cache) # Disable cache
+            NO_CACHE_OPT=' --ignore-build-cache'
+        ;;
+        --)
+            shift
+            break;;
+    esac
+    shift
+done
+
+
+
+pushd "."
+set -x
+MLV_PY_CMD_PATH="poc/pipeline/steps/mlvtools_01_extract_dataset.py"
+MLV_PY_CMD_NAME="mlvtools_01_extract_dataset.py"
+
+# META FILENAME, MODIFY IF DUPLICATE
+MLV_DVC_META_FILENAME="./mlvtools_01_extract_dataset.dvc"
+
+dvc run -f $MLV_DVC_META_FILENAME -o ./poc/data/data_train.csv -o ./poc/data/data_test.csv \
+-d ./poc/data/20news-bydate_py3.pkz \
+"$MLV_PY_CMD_PATH --subset train \
+     --data-home ./poc/data --output-path ./poc/data/data_train.csv && \
+ $MLV_PY_CMD_PATH --subset test \
+     --data-home ./poc/data --output-path ./poc/data/data_test.csv"
+
+
+popd
