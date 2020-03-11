@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import codecs
-import pickle
 from os.path import dirname, join
+import pickle
 
+from sklearn.datasets._twenty_newsgroups import CACHE_NAME  # noqa - this should be exposed
 from sklearn.utils import shuffle
 
-cache_path = join(dirname(__file__), 'poc', 'data', '20news-bydate_py3.pkz')
+cache_path = join(dirname(__file__), 'poc', 'data', CACHE_NAME)
 
 
 def shuffle_data(subset: str, cache):

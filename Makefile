@@ -1,5 +1,6 @@
 SHELL := /bin/bash
 develop:
+	#pip install --force-reinstall --no-cache-dir scikit-learn==0.19.0
 	pip install -r ./requirements.txt
 
 init-struct:
