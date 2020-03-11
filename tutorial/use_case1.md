@@ -107,6 +107,9 @@ In this very simple tutorial example, we do not apply any lemmatization techniqu
     # Run pipeline ./poc/commands/ ./poc/data/
     git commit -m 'Tutorial use case 1 step 2: tokenize text'
 
+    # download stopwords from nltk
+    venv/bin/python3 -m nltk.downloader stopwords
+
     ./poc/commands/dvc/mlvtools_02_tokenize_text_dvc
 
     # Version the result
