@@ -1,0 +1,12 @@
+md5: 878b6bf7c5408e1172db316a1138b590
+cmd: poc/pipeline/steps/mlvtools_02_tokenize_text.py --input-csv-file ./poc/data/data_train.csv
+  --output-csv-file ./poc/data/data_train_tokenized.csv
+deps:
+- md5: 88764f36f3464d272f30aa3bbb630954
+  path: poc/data/data_train.csv
+outs:
+- md5: 60c56979cdcacf7501642d7fd7c86f3e
+  path: poc/data/data_train_tokenized.csv
+  cache: true
+  metric: false
+  persist: false
