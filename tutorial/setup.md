@@ -9,8 +9,8 @@ The structure of the project will be created along the tutorial.
 
 If it is not already done, clone the repository on the tutorial branch.
 
-    git clone -b tutorial https://github.com/peopledoc/mlv-tools-tutorial
-    cd ml-poc-version
+    git clone https://github.com/peopledoc/mlv-tools-tutorial
+    cd mlv-tools-tutorial
 
 Create your working branch
 
@@ -46,6 +46,8 @@ Following structure must be created:
 
 Create a virtual environment using **conda** or **virtualenv**, then activate it.
 Then setup the project.
+    python3 -mvenv venv
+    source venv/bin/activate
 
     make develop
 
