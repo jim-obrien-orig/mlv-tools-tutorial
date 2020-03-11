@@ -44,13 +44,13 @@ This pipeline step is based on the `01_Extract_dataset.ipynb` **Jupyter notebook
 
 5. Convert the **Jupyter notebook** into a parameterized **Python 3 script** using `ipynb_to_python`
 
-       ipynb_to_python -n ./poc/pipeline/notebooks/01_Extract_dataset.ipynb  
+       ipynb_to_python -w . -n ./poc/pipeline/notebooks/01_Extract_dataset.ipynb  
 
    Ensure `./poc/pipeline/steps/mlvtools_01_extract_dataset.py` is well created.
 
 6. Create a **DVC** command to run the **Python 3** script using **DVC**
 
-       gen_dvc -i ./poc/pipeline/steps/mlvtools_01_extract_dataset.py
+       gen_dvc -w . -i ./poc/pipeline/steps/mlvtools_01_extract_dataset.py
 
    Ensure `./poc/commands/dvc/mlvtools_01_extract_dataset_dvc` is created
 
@@ -99,10 +99,10 @@ In this very simple tutorial example, we do not apply any lemmatization techniqu
     git commit -m 'Tutorial: use case 1 step 2 - Add notebook'
 
     # Convert to Python 3 script
-    ipynb_to_python -n ./poc/pipeline/notebooks/02_Tokenize_text.ipynb
+    ipynb_to_python -w . -n ./poc/pipeline/notebooks/02_Tokenize_text.ipynb
 
     # Generate command
-    gen_dvc -i ./poc/pipeline/steps/mlvtools_02_tokenize_text.py
+    gen_dvc -w . -i ./poc/pipeline/steps/mlvtools_02_tokenize_text.py
 
     # Run pipeline ./poc/commands/ ./poc/data/
     git commit -m 'Tutorial use case 1 step 2: tokenize text'
@@ -145,10 +145,10 @@ and not train the best classifier possible.
     git commit -m 'Tutorial: use case 1 step 3 - Add notebook'
 
     # Convert to Python 3 script
-    ipynb_to_python -n ./poc/pipeline/notebooks/03_Classify_text.ipynb
+    ipynb_to_python -w . -n ./poc/pipeline/notebooks/03_Classify_text.ipynb
 
     # Generate command
-    gen_dvc -i ./poc/pipeline/steps/mlvtools_03_classify_text.py
+    gen_dvc -w . -i ./poc/pipeline/steps/mlvtools_03_classify_text.py
 
     # Run
     ./poc/commands/dvc/mlvtools_03_classify_text_dvc
@@ -180,10 +180,10 @@ Next, in the **Jupyter notebook** `04_Evaluate_model.ipynb` , we want to evaluat
     git commit -m 'Tutorial: use case 1 step 4 - Add notebook'
 
     # Convert to Python 3 script
-    ipynb_to_python -n ./poc/pipeline/notebooks/04_Evaluate_model.ipynb
+    ipynb_to_python -w . -n ./poc/pipeline/notebooks/04_Evaluate_model.ipynb
 
     # Generate command
-    gen_dvc -i ./poc/pipeline/steps/mlvtools_04_evaluate_model.py
+    gen_dvc -w . -i ./poc/pipeline/steps/mlvtools_04_evaluate_model.py
 
     # Run
     ./poc/commands/dvc/mlvtools_04_evaluate_model_dvc
