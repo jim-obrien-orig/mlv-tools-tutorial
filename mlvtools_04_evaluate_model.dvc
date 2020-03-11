@@ -1,0 +1,14 @@
+md5: 2de972b776fff93c3e077a200fec7266
+cmd: poc/pipeline/steps/mlvtools_04_evaluate_model.py --data-file ./poc/data/data_train_tokenized.csv
+  --model-file ./poc/data/fasttext_model.bin --result-file ./poc/data/metrics.txt
+deps:
+- md5: 60c56979cdcacf7501642d7fd7c86f3e
+  path: poc/data/data_train_tokenized.csv
+- md5: 9fbf98a7d88dd0fcca38f65bba83cde8
+  path: poc/data/fasttext_model.bin
+outs:
+- md5: 31922d37f933ba92e03541399d74c099
+  path: poc/data/metrics.txt
+  cache: true
+  metric: false
+  persist: false
