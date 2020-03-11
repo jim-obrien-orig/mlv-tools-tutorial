@@ -1,0 +1,7 @@
+{
+ "path": {
+ 	"python_script_root_dir": "./poc/pipeline/steps",
+ 	"dvc_cmd_root_dir": "./poc/commands/dvc"
+ 	}
+}
+
