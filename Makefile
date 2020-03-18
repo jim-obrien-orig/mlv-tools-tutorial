@@ -93,22 +93,22 @@ us1-step4:
 
 us1-step5:
 	cp ./poc/commands/dvc/mlvtools_02_tokenize_text_dvc ./poc/commands/dvc/mlvtools_02_test_tokenize_text_dvc
-	sed -i 's#INPUT_CSV_FILE="./poc/data/data_train.csv"#INPUT_CSV_FILE="./poc/data/data_test.csv"#g' \
+	gsed -i 's#INPUT_CSV_FILE="./poc/data/data_train.csv"#INPUT_CSV_FILE="./poc/data/data_test.csv"#g' \
 	./poc/commands/dvc/mlvtools_02_test_tokenize_text_dvc
-	sed -i 's#OUTPUT_CSV_FILE="./poc/data/data_train_tokenized.csv"#OUTPUT_CSV_FILE="./poc/data/data_test_tokenized.csv"#g' \
+	gsed -i 's#OUTPUT_CSV_FILE="./poc/data/data_train_tokenized.csv"#OUTPUT_CSV_FILE="./poc/data/data_test_tokenized.csv"#g' \
 	./poc/commands/dvc/mlvtools_02_test_tokenize_text_dvc
-	sed -i 's#MLV_DVC_META_FILENAME="mlvtools_02_tokenize_text.dvc"#MLV_DVC_META_FILENAME="mlvtools_02_test_tokenize_text.dvc"#g' \
+	gsed -i 's#MLV_DVC_META_FILENAME="mlvtools_02_tokenize_text.dvc"#MLV_DVC_META_FILENAME="mlvtools_02_test_tokenize_text.dvc"#g' \
 		./poc/commands/dvc/mlvtools_02_test_tokenize_text_dvc
 	./poc/commands/dvc/mlvtools_02_test_tokenize_text_dvc
 
 
 us1-step6:
 	cp ./poc/commands/dvc/mlvtools_04_evaluate_model_dvc ./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc
-	sed -i 's#DATA_FILE="./poc/data/data_train_tokenized.csv"#DATA_FILE="./poc/data/data_test_tokenized.csv"#g' \
+	gsed -i 's#DATA_FILE="./poc/data/data_train_tokenized.csv"#DATA_FILE="./poc/data/data_test_tokenized.csv"#g' \
 	./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc
-	sed -i 's#RESULT_FILE="./poc/data/metrics.txt"#RESULT_FILE="./poc/data/metrics_test.txt"#g' \
+	gsed -i 's#RESULT_FILE="./poc/data/metrics.txt"#RESULT_FILE="./poc/data/metrics_test.txt"#g' \
 	./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc
-	sed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_test_model.dvc"#g' \
+	gsed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_test_model.dvc"#g' \
 		./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc
 	./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc
 
@@ -121,9 +121,9 @@ pipeline1: us1-step1 us1-step2 us1-step3 us1-step4 us1-step5 us1-step6
 
 us2-step1:
 	cp ./resources/03_bis_Classify_text.ipynb ./poc/pipeline/notebooks/03_Classify_text.ipynb
-	sed -i 's#\[REPLACE_CSV_INPUT\]#./poc/data/data_train_tokenized.csv#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
-	sed -i 's#\[REPLACE_MODEL_OUT_BIN_PATH\]#./poc/data/fasttext_model.bin#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
-	sed -i 's#\[REPLACE_MODEL_OUT_VEC_PATH\]#./poc/data/fasttext_model.vec#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_CSV_INPUT\]#./poc/data/data_train_tokenized.csv#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_MODEL_OUT_BIN_PATH\]#./poc/data/fasttext_model.bin#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_MODEL_OUT_VEC_PATH\]#./poc/data/fasttext_model.vec#g' ./poc/pipeline/notebooks/03_Classify_text.ipynb
 	ipynb_to_python -n ./poc/pipeline/notebooks/03_Classify_text.ipynb -f
 	gen_dvc -i ./poc/pipeline/steps/mlvtools_03_classify_text.py -f
 	./poc/commands/dvc/mlvtools_03_classify_text_dvc
@@ -133,30 +133,30 @@ pipeline2: us2-step1
 
 us3-step1:
 	cp ./resources/03_bis_Classify_text.ipynb ./poc/pipeline/notebooks/
-	sed -i 's#\[REPLACE_CSV_INPUT\]#./poc/data/data_train_tokenized.csv#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
-	sed -i 's#\[REPLACE_MODEL_OUT_BIN_PATH\]#./poc/data/fasttext_model_bis.bin#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
-	sed -i 's#\[REPLACE_MODEL_OUT_VEC_PATH\]#./poc/data/fasttext_model_bis.vec#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_CSV_INPUT\]#./poc/data/data_train_tokenized.csv#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_MODEL_OUT_BIN_PATH\]#./poc/data/fasttext_model_bis.bin#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
+	gsed -i 's#\[REPLACE_MODEL_OUT_VEC_PATH\]#./poc/data/fasttext_model_bis.vec#g' ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb
 	ipynb_to_python -n ./poc/pipeline/notebooks/03_bis_Classify_text.ipynb -f
 	gen_dvc -i ./poc/pipeline/steps/mlvtools_03_bis_classify_text.py -f
 	./poc/commands/dvc/mlvtools_03_bis_classify_text_dvc
 
 us3-step2:
 	cp ./poc/commands/dvc/mlvtools_04_evaluate_model_dvc ./poc/commands/dvc/mlvtools_04_bis_evaluate_model_dvc
-	sed -i 's#MODEL_FILE="./poc/data/fasttext_model.bin"#MODEL_FILE="./poc/data/fasttext_model_bis.bin"#g' \
+	gsed -i 's#MODEL_FILE="./poc/data/fasttext_model.bin"#MODEL_FILE="./poc/data/fasttext_model_bis.bin"#g' \
 		./poc/commands/dvc/mlvtools_04_bis_evaluate_model_dvc
-	sed -i 's#RESULT_FILE="./poc/data/metrics.txt"#RESULT_FILE="./poc/data/metrics_bis.txt"#g' \
+	gsed -i 's#RESULT_FILE="./poc/data/metrics.txt"#RESULT_FILE="./poc/data/metrics_bis.txt"#g' \
 		./poc/commands/dvc/mlvtools_04_bis_evaluate_model_dvc
-	sed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_bis_evaluate_model.dvc"#g' \
+	gsed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_bis_evaluate_model.dvc"#g' \
 				./poc/commands/dvc/mlvtools_04_bis_evaluate_model_dvc
 	./poc/commands/dvc/mlvtools_04_bis_evaluate_model_dvc
 
 us3-step3:
 	cp ./poc/commands/dvc/mlvtools_04_evaluate_test_model_dvc ./poc/commands/dvc/mlvtools_04_bis_evaluate_test_model_dvc
-	sed -i 's#MODEL_FILE="./poc/data/fasttext_model.bin"#MODEL_FILE="./poc/data/fasttext_model_bis.bin"#g' \
+	gsed -i 's#MODEL_FILE="./poc/data/fasttext_model.bin"#MODEL_FILE="./poc/data/fasttext_model_bis.bin"#g' \
 		./poc/commands/dvc/mlvtools_04_bis_evaluate_test_model_dvc
-	sed -i 's#RESULT_FILE="./poc/data/metrics_test.txt"#RESULT_FILE="./poc/data/metrics_test_bis.txt"#g' \
+	gsed -i 's#RESULT_FILE="./poc/data/metrics_test.txt"#RESULT_FILE="./poc/data/metrics_test_bis.txt"#g' \
 		./poc/commands/dvc/mlvtools_04_bis_evaluate_test_model_dvc
-	sed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_test_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_bis_evaluate_test_model.dvc"#g' \
+	gsed -i 's#MLV_DVC_META_FILENAME="mlvtools_04_evaluate_test_model.dvc"#MLV_DVC_META_FILENAME="mlvtools_04_bis_evaluate_test_model.dvc"#g' \
 				./poc/commands/dvc/mlvtools_04_bis_evaluate_test_model_dvc
 	./poc/commands/dvc/mlvtools_04_bis_evaluate_test_model_dvc
 
