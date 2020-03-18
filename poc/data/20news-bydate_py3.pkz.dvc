@@ -1,7 +1,0 @@
-md5: e926d3e286f6d24a6a228f7ba3c622fa
-outs:
-- md5: b3a2598c95a73ca596fc95c5422be50d
-  path: 20news-bydate_py3.pkz
-  cache: true
-  metric: false
-  persist: false
